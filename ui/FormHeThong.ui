@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1100</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1100</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Trang Chủ - Quản Lý Thông Tin Đoàn Viên</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1101</width>
+      <height>681</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>resources/background.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1100</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <widget class="QMenu" name="menuH_Th_ng">
+    <property name="title">
+     <string>Hệ Thống</string>
+    </property>
+    <addaction name="actionC_Nh_n"/>
+    <addaction name="actionThay_i_m_t_kh_u"/>
+    <addaction name="actionTho_t"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuDanh_M_c">
+    <property name="title">
+     <string>Danh Mục</string>
+    </property>
+    <addaction name="actionChi_b"/>
+    <addaction name="actionCh_c_v_ng_vi_n"/>
+    <addaction name="actionCh_c_v_ch_nh_quy_n"/>
+    <addaction name="actionTr_nh_chuy_n_m_n"/>
+    <addaction name="actionTr_nh_L_lu_n_ch_nh_tr"/>
+    <addaction name="actionD_n_t_c"/>
+    <addaction name="actionT_n_gi_o"/>
+   </widget>
+   <widget class="QMenu" name="menuNghi_p_V_ng_Vi_n">
+    <property name="title">
+     <string>Nghiệp Vụ Đảng Viên</string>
+    </property>
+    <addaction name="actionTh_ng_tin_ng_vi_n"/>
+   </widget>
+   <widget class="QMenu" name="menuB_o_C_o">
+    <property name="title">
+     <string>Báo Cáo</string>
+    </property>
+   </widget>
+   <addaction name="menuH_Th_ng"/>
+   <addaction name="menuDanh_M_c"/>
+   <addaction name="menuNghi_p_V_ng_Vi_n"/>
+   <addaction name="menuB_o_C_o"/>
+  </widget>
+  <action name="actionC_Nh_n">
+   <property name="text">
+    <string>Cá Nhân</string>
+   </property>
+  </action>
+  <action name="actionThay_i_m_t_kh_u">
+   <property name="text">
+    <string>Thay đổi mật khẩu</string>
+   </property>
+  </action>
+  <action name="actionTho_t">
+   <property name="text">
+    <string>Thoát</string>
+   </property>
+  </action>
+  <action name="actionChi_b">
+   <property name="text">
+    <string>Chi bộ</string>
+   </property>
+  </action>
+  <action name="actionCh_c_v_ng_vi_n">
+   <property name="text">
+    <string>Chức vụ Đảng viên</string>
+   </property>
+  </action>
+  <action name="actionCh_c_v_ch_nh_quy_n">
+   <property name="text">
+    <string>Chức vụ chính quyền</string>
+   </property>
+  </action>
+  <action name="actionTr_nh_chuy_n_m_n">
+   <property name="text">
+    <string>Trình độ chuyên môn</string>
+   </property>
+  </action>
+  <action name="actionTr_nh_L_lu_n_ch_nh_tr">
+   <property name="text">
+    <string>Trình độ Lý luận chính trị</string>
+   </property>
+  </action>
+  <action name="actionD_n_t_c">
+   <property name="text">
+    <string>Dân tộc</string>
+   </property>
+  </action>
+  <action name="actionT_n_gi_o">
+   <property name="text">
+    <string>Tôn giáo</string>
+   </property>
+  </action>
+  <action name="actionTh_ng_tin_ng_vi_n">
+   <property name="text">
+    <string>Thông tin Đảng viên</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
