@@ -134,6 +134,7 @@ class ChiBo(QWidget):
                     self.db.queryExecute(query)
                     self.messageBoxInfo("Thông Báo", "Xóa chi bộ thành công!")
                     self.getData()
+                    self.resetInput()
             except:
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi xóa chi bộ!")
 

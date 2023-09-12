@@ -112,9 +112,7 @@ class ChucVuChinhQuyen(QWidget):
                     self.messageBoxInfo("Thông Báo", "Xóa chức vụ Chính quyền thành công!")
                     self.getData()
 
-                    self.txtMaChucVu.setEnabled(True)
-                    self.txtMaChucVu.setText("")
-                    self.txtTenChucVu.setText("")
+                    self.resetInput()
             except:
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi xóa chức vụ Chính quyền!")
 

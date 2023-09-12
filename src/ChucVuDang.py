@@ -111,6 +111,8 @@ class ChucVuDang(QWidget):
                     self.db.queryExecute(query)
                     self.messageBoxInfo("Thông Báo", "Xóa chức vụ Đảng thành công!")
                     self.getData()
+
+                    self.resetInput()
             except:
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi xóa chức vụ Đảng!")
 
