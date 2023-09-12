@@ -149,12 +149,12 @@
   </action>
   <action name="menu_danhmuc_chucvuchinhquyen">
    <property name="text">
-    <string>Chức vụ chính quyền</string>
+    <string>Chức vụ Chính quyền</string>
    </property>
   </action>
   <action name="menu_danhmuc_trinhdochuyenmon">
    <property name="text">
-    <string>Trình độ chuyên môn</string>
+    <string>Trình độ Chuyên môn</string>
    </property>
   </action>
   <action name="menu_chuyenmuc_trinhdolyluanchinhtri">
