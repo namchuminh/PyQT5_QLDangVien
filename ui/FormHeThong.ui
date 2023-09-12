@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Trang Chủ - Quản Lý Thông Tin Đoàn Viên</string>
+   <string>Quản Lý Thông Tin Đoàn Viên</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -98,19 +98,19 @@
     <property name="title">
      <string>Danh Mục</string>
     </property>
-    <addaction name="actionChi_b"/>
-    <addaction name="actionCh_c_v_ng_vi_n"/>
-    <addaction name="actionCh_c_v_ch_nh_quy_n"/>
-    <addaction name="actionTr_nh_chuy_n_m_n"/>
-    <addaction name="actionTr_nh_L_lu_n_ch_nh_tr"/>
-    <addaction name="actionD_n_t_c"/>
-    <addaction name="actionT_n_gi_o"/>
+    <addaction name="menu_danhmuc_chibo"/>
+    <addaction name="menu_danhmuc_chucvudangvien"/>
+    <addaction name="menu_danhmuc_chucvuchinhquyen"/>
+    <addaction name="menu_danhmuc_trinhdochuyenmon"/>
+    <addaction name="menu_chuyenmuc_trinhdolyluanchinhtri"/>
+    <addaction name="menu_chuyenmuc_dantoc"/>
+    <addaction name="menu_danhmuc_tongiao"/>
    </widget>
    <widget class="QMenu" name="menuNghi_p_V_ng_Vi_n">
     <property name="title">
      <string>Nghiệp Vụ Đảng Viên</string>
     </property>
-    <addaction name="actionTh_ng_tin_ng_vi_n"/>
+    <addaction name="menu_dangvien"/>
    </widget>
    <widget class="QMenu" name="menuB_o_C_o">
     <property name="title">
@@ -137,42 +137,42 @@
     <string>Thoát</string>
    </property>
   </action>
-  <action name="actionChi_b">
+  <action name="menu_danhmuc_chibo">
    <property name="text">
     <string>Chi bộ</string>
    </property>
   </action>
-  <action name="actionCh_c_v_ng_vi_n">
+  <action name="menu_danhmuc_chucvudangvien">
    <property name="text">
     <string>Chức vụ Đảng viên</string>
    </property>
   </action>
-  <action name="actionCh_c_v_ch_nh_quy_n">
+  <action name="menu_danhmuc_chucvuchinhquyen">
    <property name="text">
     <string>Chức vụ chính quyền</string>
    </property>
   </action>
-  <action name="actionTr_nh_chuy_n_m_n">
+  <action name="menu_danhmuc_trinhdochuyenmon">
    <property name="text">
     <string>Trình độ chuyên môn</string>
    </property>
   </action>
-  <action name="actionTr_nh_L_lu_n_ch_nh_tr">
+  <action name="menu_chuyenmuc_trinhdolyluanchinhtri">
    <property name="text">
     <string>Trình độ Lý luận chính trị</string>
    </property>
   </action>
-  <action name="actionD_n_t_c">
+  <action name="menu_chuyenmuc_dantoc">
    <property name="text">
     <string>Dân tộc</string>
    </property>
   </action>
-  <action name="actionT_n_gi_o">
+  <action name="menu_danhmuc_tongiao">
    <property name="text">
     <string>Tôn giáo</string>
    </property>
   </action>
-  <action name="actionTh_ng_tin_ng_vi_n">
+  <action name="menu_dangvien">
    <property name="text">
     <string>Thông tin Đảng viên</string>
    </property>
