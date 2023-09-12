@@ -15,7 +15,11 @@ class ChiBo(QWidget):
         self.tblChiBo.itemSelectionChanged.connect(self.getSelectedRowData)
         self.buttonLamMoi.clicked.connect(self.resetInput)
         self.buttonThem.clicked.connect(self.add)
+        self.buttonSua.clicked.connect(self.update)
+        self.buttonXoa.clicked.connect(self.delete)
 
+        self.buttonSua.setDisabled(True)
+        self.buttonXoa.setDisabled(True)
 
         self.getData()
 
@@ -53,18 +57,23 @@ class ChiBo(QWidget):
             
             self.txtMaChiBo.setText(maChiBo)
             self.txtTenChiBo.setText(tenChiBo)
+            ngayThanhLap = datetime.strptime(ngayThanhLap, "%Y-%m-%d")
+            ngayThanhLap = ngayThanhLap.strftime("%d-%m-%Y")
             self.txtNgayThanhLap.setText(ngayThanhLap)
             self.txtTongSo.setText(soThanhVien) 
 
             self.txtMaChiBo.setDisabled(True)
             self.buttonThem.setDisabled(True)
 
+            self.buttonSua.setEnabled(True)
+            self.buttonXoa.setEnabled(True)
+
     def add(self):
         if self.txtMaChiBo.text() == "" or self.txtTenChiBo.text() == "" or self.txtNgayThanhLap.text() == "" or self.txtTongSo.text() == "":
             self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin chi bộ!")
             return
         elif self.is_valid_date(self.txtNgayThanhLap.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày thành lập định dạng: ngày-tháng-năm!")
+            self.messageBoxInfo("Thông Báo", "Ngày thành lập định dạng: dd-mm-YYYY!")
             return
         elif self.txtTongSo.text().isdigit() == False:
             self.messageBoxInfo("Thông Báo", "Số thành viên phải nhập là kiểu số!")
@@ -85,6 +94,43 @@ class ChiBo(QWidget):
             except:
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi thêm chi bộ!")
 
+    def update(self):
+        if self.txtMaChiBo.text() == "" or self.txtTenChiBo.text() == "" or self.txtNgayThanhLap.text() == "" or self.txtTongSo.text() == "":
+            self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin chi bộ!")
+            return
+        elif self.is_valid_date(self.txtNgayThanhLap.text(),f"%d-%m-%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày thành lập định dạng: dd-mm-YYYY!")
+            return
+        elif self.txtTongSo.text().isdigit() == False:
+            self.messageBoxInfo("Thông Báo", "Số thành viên phải nhập là kiểu số!")
+            return
+        else:
+            try:
+                ngayThanhLap = datetime.strptime(self.txtNgayThanhLap.text(), "%d-%m-%Y")
+                ngayThanhLap = ngayThanhLap.strftime("%Y-%m-%d")
+                query = f"UPDATE `chibo` SET `TenChiBo`='{self.txtTenChiBo.text()}',`NgayThanhLap`='{ngayThanhLap}',`TongSo`='{self.txtTongSo.text()}' WHERE `MaChiBo`='{self.txtMaChiBo.text()}'"
+                self.db.queryExecute(query)
+                self.messageBoxInfo("Thông Báo", "Cập nhật chi bộ thành công!")
+                self.getData()
+            except:
+                self.messageBoxInfo("Thông Báo", "Có lỗi khi cập nhật chi bộ!")
+        
+    def delete(self):
+        if self.txtMaChiBo.text() == "":
+            self.messageBoxInfo("Thông Báo", "Vui lòng chọn chi bộ cần xóa!")
+            return
+        else:
+            try:
+                reply = QMessageBox.question(None, "Xác nhận", "Bạn có muốn xóa chi bộ này không?", QMessageBox.Yes | QMessageBox.No)
+                # Kiểm tra phản hồi từ hộp thoại
+                if reply == QMessageBox.Yes:
+                    query = f"DELETE FROM `chibo` WHERE `MaChiBo`='{self.txtMaChiBo.text()}'"
+                    self.db.queryExecute(query)
+                    self.messageBoxInfo("Thông Báo", "Xóa chi bộ thành công!")
+                    self.getData()
+            except:
+                self.messageBoxInfo("Thông Báo", "Có lỗi khi xóa chi bộ!")
+
     def resetInput(self):
         self.txtMaChiBo.setText("")
         self.txtTenChiBo.setText("")
@@ -93,6 +139,9 @@ class ChiBo(QWidget):
 
         self.txtMaChiBo.setEnabled(True)
         self.buttonThem.setEnabled(True)
+
+        self.buttonSua.setDisabled(True)
+        self.buttonXoa.setDisabled(True)
     
     def messageBoxInfo(self, title, text):
         reply = QMessageBox()
