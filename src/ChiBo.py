@@ -29,9 +29,15 @@ class ChiBo(QWidget):
         self.showDataTable(result)
 
     def showDataTable(self, data):
-        # Thiết lập số hàng và số cột cho bảng
-        self.tblChiBo.setRowCount(len(data))
-        self.tblChiBo.setColumnCount(len(data[0]))
+        
+        if len(data) == 0:
+            # Thiết lập số hàng và số cột cho bảng
+            self.tableData.setRowCount(0)
+            self.tableData.setColumnCount(0)
+        else:
+            # Thiết lập số hàng và số cột cho bảng
+            self.tableData.setRowCount(len(data))
+            self.tableData.setColumnCount(len(data[0]))
 
         # Đặt tên cho các cột
         self.tblChiBo.setHorizontalHeaderLabels(['Mã Chi Bộ', 'Tên Chi Bộ', 'Ngày Thành Lập', 'Số Thành Viên'])
