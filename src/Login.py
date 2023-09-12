@@ -32,8 +32,6 @@ class Login(QMainWindow):
             query = f"SELECT COUNT(*) FROM taikhoan WHERE TaiKhoan = '{self.username}' AND MatKhau = '{hashed_password}'"
             result = self.db.queryResult(query)
 
-            print(result[0][0])
-
             if result[0][0] == 0:
                 self.error = "Sai tài khoản hoặc mật khẩu!" 
             else:

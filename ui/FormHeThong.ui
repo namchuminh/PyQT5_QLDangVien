@@ -38,7 +38,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="label_background">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -89,9 +89,9 @@
     <property name="title">
      <string>Hệ Thống</string>
     </property>
-    <addaction name="actionC_Nh_n"/>
+    <addaction name="menu_hethong_canhan"/>
     <addaction name="actionThay_i_m_t_kh_u"/>
-    <addaction name="actionTho_t"/>
+    <addaction name="menu_hethong_thoat"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menuDanh_M_c">
@@ -122,7 +122,7 @@
    <addaction name="menuNghi_p_V_ng_Vi_n"/>
    <addaction name="menuB_o_C_o"/>
   </widget>
-  <action name="actionC_Nh_n">
+  <action name="menu_hethong_canhan">
    <property name="text">
     <string>Cá Nhân</string>
    </property>
@@ -132,7 +132,7 @@
     <string>Thay đổi mật khẩu</string>
    </property>
   </action>
-  <action name="actionTho_t">
+  <action name="menu_hethong_thoat">
    <property name="text">
     <string>Thoát</string>
    </property>
