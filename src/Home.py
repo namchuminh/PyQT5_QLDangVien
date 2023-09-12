@@ -3,6 +3,7 @@ from PyQt5.uic import loadUi
 from .Profile import Profile
 from .Wellcome import Wellcome
 from .ChiBo import ChiBo
+from .ChucVuDang import ChucVuDang
 
 
 class Home(QMainWindow):
@@ -16,6 +17,7 @@ class Home(QMainWindow):
         self.displayUi(Wellcome())
         self.menu_hethong_canhan.triggered.connect(self.loadWidget)
         self.menu_danhmuc_chibo.triggered.connect(self.loadWidget)
+        self.menu_danhmuc_chucvudangvien.triggered.connect(self.loadWidget)
 
     def loadWidget(self):
         sender = self.sender()
@@ -23,6 +25,8 @@ class Home(QMainWindow):
             self.displayUi(Profile(self.user))
         if sender == self.menu_danhmuc_chibo:
             self.displayUi(ChiBo())
+        if sender == self.menu_danhmuc_chucvudangvien:
+            self.displayUi(ChucVuDang())
     
     def displayUi(self, widget):
         self.stacked_widget.addWidget(widget)
