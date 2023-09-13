@@ -6,7 +6,7 @@ from .ChiBo import ChiBo
 from .ChucVuDang import ChucVuDang
 from .ChucVuChinhQuyen import ChucVuChinhQuyen
 from .TrinhDoChuyenMon import TrinhDoChuyenMon
-
+from .LyLuanChinhTri import LyLuanChinhTri
 
 class Home(QMainWindow):
 
@@ -22,7 +22,8 @@ class Home(QMainWindow):
         self.menu_danhmuc_chucvudangvien.triggered.connect(self.loadWidget)
         self.menu_danhmuc_chucvuchinhquyen.triggered.connect(self.loadWidget)
         self.menu_danhmuc_trinhdochuyenmon.triggered.connect(self.loadWidget)
-
+        self.menu_chuyenmuc_trinhdolyluanchinhtri.triggered.connect(self.loadWidget)
+        
 
     def loadWidget(self):
         sender = self.sender()
@@ -36,6 +37,8 @@ class Home(QMainWindow):
             self.displayUi(ChucVuChinhQuyen())
         if sender == self.menu_danhmuc_trinhdochuyenmon:
             self.displayUi(TrinhDoChuyenMon())
+        if sender == self.menu_chuyenmuc_trinhdolyluanchinhtri:
+            self.displayUi(LyLuanChinhTri())
         
     
     def displayUi(self, widget):
