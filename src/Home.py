@@ -8,6 +8,7 @@ from .ChucVuChinhQuyen import ChucVuChinhQuyen
 from .TrinhDoChuyenMon import TrinhDoChuyenMon
 from .LyLuanChinhTri import LyLuanChinhTri
 from .DanToc import DanToc
+from .TonGiao import TonGiao
 
 class Home(QMainWindow):
 
@@ -25,6 +26,7 @@ class Home(QMainWindow):
         self.menu_danhmuc_trinhdochuyenmon.triggered.connect(self.loadWidget)
         self.menu_chuyenmuc_trinhdolyluanchinhtri.triggered.connect(self.loadWidget)
         self.menu_chuyenmuc_dantoc.triggered.connect(self.loadWidget)
+        self.menu_danhmuc_tongiao.triggered.connect(self.loadWidget)
 
 
     def loadWidget(self):
@@ -43,6 +45,8 @@ class Home(QMainWindow):
             self.displayUi(LyLuanChinhTri())
         if sender == self.menu_chuyenmuc_dantoc:
             self.displayUi(DanToc())
+        if sender == self.menu_danhmuc_tongiao:
+            self.displayUi(TonGiao())
         
     
     def displayUi(self, widget):
