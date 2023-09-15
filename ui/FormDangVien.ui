@@ -136,6 +136,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -211,6 +216,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -223,6 +233,11 @@
       <width>161</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -441,6 +456,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -453,6 +473,11 @@
       <width>151</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -597,6 +622,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -628,6 +658,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -637,7 +672,7 @@
      <rect>
       <x>830</x>
       <y>230</y>
-      <width>131</width>
+      <width>91</width>
       <height>21</height>
      </rect>
     </property>
@@ -668,6 +703,15 @@
    </property>
    <property name="midLineWidth">
     <number>1</number>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAsNeeded</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="autoScroll">
+    <bool>false</bool>
    </property>
    <property name="editTriggers">
     <set>QAbstractItemView::NoEditTriggers</set>
@@ -808,6 +852,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -839,6 +888,11 @@
       <height>25</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
@@ -869,6 +923,11 @@
       <width>131</width>
       <height>25</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true"/>

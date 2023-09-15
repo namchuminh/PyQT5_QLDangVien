@@ -11,7 +11,7 @@ class DangVien(QWidget):
         super().__init__()
         loadUi("ui/FormDangVien.ui", self)
         # Để căn chỉnh cột theo chiều ngang
-        self.tableData.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  
+        # self.tableData.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  
         self.tableData.itemSelectionChanged.connect(self.getSelectedRowData)
         self.buttonLamMoi.clicked.connect(self.resetInput)
         self.buttonThem.clicked.connect(self.add)
@@ -24,9 +24,71 @@ class DangVien(QWidget):
         self.getData()
 
     def getData(self):
-        query = "SELECT * FROM tongiao"
+        query = """
+                SELECT dangvien.MaDangVien, dangvien.SoTheDang, dangvien.HoTen, dangvien.SoCCCD, dangvien.NgaySinh, dangvien.GioiTinh, dantoc.TenDanToc, tongiao.TenTonGiao,dangvien.QueQuan, dangvien.HoKhauThuongTru, dangvien.NoiSinh, dangvien.DiaChiHienTai, dangvien.NgayVaoDang, dangvien.NgayChinhThuc, dangvien.SoDienThoai, dangvien.Email, chibo.TenChiBo, chucvudang.ChucVuDang, chucvuchinhquyen.ChucVuChinhQuyen, lyluanchinhtri.TrinhDoChinhTri, trinhdo.ChuyenMon 
+                FROM dangvien, chibo, chucvudang, chucvuchinhquyen, dantoc, lyluanchinhtri, tongiao, trinhdo 
+                WHERE dangvien.MaChiBo = chibo.MaChiBo AND dangvien.MaDanToc = dantoc.MaDanToc AND dangvien.MaTonGiao = tongiao.MaTonGiao AND dangvien.MaChucVuChinhQuyen = chucvuchinhquyen.MaChucVu AND dangvien.MaChucVuDang = chucvudang.MaChucVu AND dangvien.MaTrinhDoLyLuanChinhTri = lyluanchinhtri.MaTrinhDo AND dangvien.MaTrinhDoChuyenMon = trinhdo.MaTrinhDo;
+            """
         result = self.db.queryResult(query)
         self.showDataTable(result)
+        self.showComboBox()
+
+    def showComboBox(self):
+        try:
+            strsql = "SELECT * FROM chibo;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbTimCB.addItem(str(item[1]))
+                    self.cbChiBo.addItem(str(item[1]))
+            
+            strsql = "SELECT * FROM chucvudang;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbChucVuDang.addItem(str(item[1]))
+                    self.cbTimCVD.addItem(str(item[1]))
+            
+            strsql = "SELECT * FROM lyluanchinhtri;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbTrinhDoLLCT.addItem(str(item[1]))
+                    self.cbTimLLCT.addItem(str(item[1]))
+            
+            strsql = "SELECT * FROM dantoc;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbDanToc.addItem(str(item[1]))
+            
+            strsql = "SELECT * FROM tongiao;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbTonGiao.addItem(str(item[1]))
+            
+            strsql = "SELECT * FROM chucvuchinhquyen;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbChucVuChinhQuyen.addItem(str(item[1]))
+
+            strsql = "SELECT * FROM trinhdo;"
+            result = self.db.queryResult(strsql)
+
+            if len(result) > 0:
+                for item in result:
+                    self.cbChuyenMon.addItem(str(item[1]))
+            
+        except:
+            self.messageBoxInfo("Thông Báo", "Có lỗi khi hiển thị thông tin đảng viên!")
 
     def showDataTable(self, data):
 
@@ -37,10 +99,10 @@ class DangVien(QWidget):
         else:
             # Thiết lập số hàng và số cột cho bảng
             self.tableData.setRowCount(len(data))
-            self.tableData.setColumnCount(len(data[0]))
+            self.tableData.setColumnCount(21)
 
         # Đặt tên cho các cột
-        self.tableData.setHorizontalHeaderLabels(['Mã Tôn Giáo', 'Tên Tôn Giáo'])
+        self.tableData.setHorizontalHeaderLabels(['Mã ĐV', 'Số Thẻ', 'Họ Tên', 'Số CCCD', 'Ngày Sinh', 'Giới Tính', 'Dân Tộc', 'Tôn Giáo', 'Quê Quán', 'Thường Trú', 'Nơi Sinh', 'Nơi Ở', 'Ngày Vào Đảng', 'Ngày Chính Thức', 'Số ĐT', 'Email', 'Chi Bộ', 'Chức Vụ Đảng', 'Chức Vụ CQ', 'Trình Độ LLCT', 'Chuyên Môn'])
 
         # Thêm dữ liệu vào bảng
         for row, rowData in enumerate(data):
