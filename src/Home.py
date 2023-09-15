@@ -9,6 +9,7 @@ from .TrinhDoChuyenMon import TrinhDoChuyenMon
 from .LyLuanChinhTri import LyLuanChinhTri
 from .DanToc import DanToc
 from .TonGiao import TonGiao
+from .DangVien import DangVien
 
 class Home(QMainWindow):
 
@@ -18,7 +19,7 @@ class Home(QMainWindow):
         self.user = user
         self.stacked_widget = QStackedWidget(self)
         self.setCentralWidget(self.stacked_widget)
-        self.displayUi(Wellcome())
+        self.displayUi(DangVien())
         self.menu_hethong_canhan.triggered.connect(self.loadWidget)
         self.menu_danhmuc_chibo.triggered.connect(self.loadWidget)
         self.menu_danhmuc_chucvudangvien.triggered.connect(self.loadWidget)
@@ -27,6 +28,7 @@ class Home(QMainWindow):
         self.menu_chuyenmuc_trinhdolyluanchinhtri.triggered.connect(self.loadWidget)
         self.menu_chuyenmuc_dantoc.triggered.connect(self.loadWidget)
         self.menu_danhmuc_tongiao.triggered.connect(self.loadWidget)
+        self.menu_dangvien.triggered.connect(self.loadWidget)
 
 
     def loadWidget(self):
@@ -47,6 +49,8 @@ class Home(QMainWindow):
             self.displayUi(DanToc())
         if sender == self.menu_danhmuc_tongiao:
             self.displayUi(TonGiao())
+        if sender == self.menu_dangvien:
+            self.displayUi(DangVien())
         
     
     def displayUi(self, widget):

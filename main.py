@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.QtGui import QIcon
 from src.Login import Login
 from src.Home import Home
-from src.Wellcome import Wellcome
+from src.DangVien import DangVien
 from database.connect import conndb
 
 class Main(QMainWindow):
@@ -32,7 +32,7 @@ class Main(QMainWindow):
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi đăng nhập!")
 
     def handleLogout(self):
-        self.home.displayUi(Wellcome())
+        self.home.displayUi(DangVien())
         self.home.hide()
         self.login.show()
 

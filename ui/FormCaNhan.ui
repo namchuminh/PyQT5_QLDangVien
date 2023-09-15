@@ -22,7 +22,23 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>30</y>
+     <y>0</y>
+     <width>1101</width>
+     <height>681</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>resources/background.jpg</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>90</y>
      <width>1101</width>
      <height>41</height>
     </rect>
@@ -30,10 +46,13 @@
    <property name="font">
     <font>
      <pointsize>16</pointsize>
-     <weight>50</weight>
-     <bold>false</bold>
+     <weight>75</weight>
+     <bold>true</bold>
      <underline>true</underline>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: white;</string>
    </property>
    <property name="text">
     <string>THÔNG TIN TÀI KHOẢN</string>
@@ -49,7 +68,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>180</y>
+     <y>240</y>
      <width>1061</width>
      <height>231</height>
     </rect>
@@ -71,6 +90,9 @@
       <pointsize>14</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string>Địa chỉ:</string>
     </property>
@@ -88,6 +110,9 @@
      <font>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string>Số điện thoại:</string>
@@ -107,6 +132,9 @@
       <pointsize>14</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string>Mã đăng nhập:</string>
     </property>
@@ -124,6 +152,9 @@
      <font>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string>Mã tài khoản:</string>
@@ -143,6 +174,9 @@
       <pointsize>14</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string>Ngày sinh:</string>
     </property>
@@ -161,6 +195,9 @@
       <pointsize>14</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
+    </property>
     <property name="text">
      <string>Phân quyền:</string>
     </property>
@@ -178,6 +215,9 @@
      <font>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;</string>
     </property>
     <property name="text">
      <string>Họ tên:</string>

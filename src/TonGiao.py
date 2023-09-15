@@ -42,11 +42,6 @@ class TonGiao(QWidget):
         # Đặt tên cho các cột
         self.tableData.setHorizontalHeaderLabels(['Mã Tôn Giáo', 'Tên Tôn Giáo'])
 
-        # Thiết lập stylesheet cho header
-        header = self.tableData.horizontalHeader()
-        header.setStyleSheet("border: 1px solid #dedfe0;")
-        
-
         # Thêm dữ liệu vào bảng
         for row, rowData in enumerate(data):
             for col, value in enumerate(rowData):

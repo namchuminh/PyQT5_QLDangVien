@@ -3,13 +3,13 @@ from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QMessageBox
 from PyQt5.uic import loadUi
 from database.connect import conndb
 
-class LyLuanChinhTri(QWidget):
+class DangVien(QWidget):
 
     db = conndb()
 
     def __init__(self):
         super().__init__()
-        loadUi("ui/FormLyLuanChinhTri.ui", self)
+        loadUi("ui/FormDangVien.ui", self)
         # Để căn chỉnh cột theo chiều ngang
         self.tableData.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  
         self.tableData.itemSelectionChanged.connect(self.getSelectedRowData)
@@ -24,7 +24,7 @@ class LyLuanChinhTri(QWidget):
         self.getData()
 
     def getData(self):
-        query = "SELECT * FROM lyluanchinhtri"
+        query = "SELECT * FROM tongiao"
         result = self.db.queryResult(query)
         self.showDataTable(result)
 
@@ -40,7 +40,7 @@ class LyLuanChinhTri(QWidget):
             self.tableData.setColumnCount(len(data[0]))
 
         # Đặt tên cho các cột
-        self.tableData.setHorizontalHeaderLabels(['Mã Trình Độ Lý Luận Chính Trị', 'Tên Trình Độ Chính Trị'])
+        self.tableData.setHorizontalHeaderLabels(['Mã Tôn Giáo', 'Tên Tôn Giáo'])
 
         # Thêm dữ liệu vào bảng
         for row, rowData in enumerate(data):
@@ -54,68 +54,68 @@ class LyLuanChinhTri(QWidget):
             maChuVu = self.tableData.item(selected_row, 0).text()
             tenChucVu = self.tableData.item(selected_row, 1).text()
 
-            self.txtMaTrinhDo.setText(maChuVu)
-            self.txtLLCT.setText(tenChucVu)
+            self.txtMaTonGiao.setText(maChuVu)
+            self.txtTenTonGiao.setText(tenChucVu)
 
-            self.txtMaTrinhDo.setDisabled(True)
+            self.txtMaTonGiao.setDisabled(True)
             self.buttonThem.setDisabled(True)
 
             self.buttonSua.setEnabled(True)
             self.buttonXoa.setEnabled(True)
 
     def add(self):
-        if self.txtMaTrinhDo.text() == "" or self.txtLLCT.text() == "":
-            self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin trình độ LLCT!")
+        if self.txtMaTonGiao.text() == "" or self.txtTenTonGiao.text() == "":
+            self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin tôn giáo!")
             return
         else:
             try:
-                query = f"SELECT COUNT(*) FROM lyluanchinhtri WHERE MaTrinhDo = '{self.txtMaTrinhDo.text()}'"
+                query = f"SELECT COUNT(*) FROM tongiao WHERE MaTonGiao = '{self.txtMaTonGiao.text()}'"
                 if self.db.queryResult(query)[0][0] >= 1:
-                    self.messageBoxInfo("Thông Báo", "Mã trình độ LLCT đã tồn tại!")
+                    self.messageBoxInfo("Thông Báo", "Mã tôn giáo đã tồn tại!")
                 else:
-                    query = f"INSERT INTO `lyluanchinhtri` (`MaTrinhDo`, `TrinhDoChinhTri`) VALUES ('{self.txtMaTrinhDo.text()}', '{self.txtLLCT.text()}');"
+                    query = f"INSERT INTO `tongiao` (`MaTonGiao`, `TenTonGiao`) VALUES ('{self.txtMaTonGiao.text()}', '{self.txtTenTonGiao.text()}');"
                     self.db.queryExecute(query)
-                    self.messageBoxInfo("Thông Báo", "Thêm trình độ LLCT thành công!")
+                    self.messageBoxInfo("Thông Báo", "Thêm tôn giáo thành công!")
                     self.getData()
             except:
-                self.messageBoxInfo("Thông Báo", "Có lỗi khi thêm trình độ LLCT!")
+                self.messageBoxInfo("Thông Báo", "Có lỗi khi thêm tôn giáo!")
 
     def update(self):
-        if self.txtMaTrinhDo.text() == "" or self.txtLLCT.text() == "":
-            self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin trình độ LLCT!")
+        if self.txtMaTonGiao.text() == "" or self.txtTenTonGiao.text() == "":
+            self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin tôn giáo!")
             return
         else:
             try:
-                query = f"UPDATE `lyluanchinhtri` SET `TrinhDoChinhTri`='{self.txtLLCT.text()}' WHERE `MaTrinhDo`='{self.txtMaTrinhDo.text()}'"
+                query = f"UPDATE `tongiao` SET `TenTonGiao`='{self.txtTenTonGiao.text()}' WHERE `MaTonGiao`='{self.txtMaTonGiao.text()}'"
                 self.db.queryExecute(query)
-                self.messageBoxInfo("Thông Báo", "Cập nhật trình độ LLCT thành công!")
+                self.messageBoxInfo("Thông Báo", "Cập nhật tôn giáo thành công!")
                 self.getData()
             except:
-                self.messageBoxInfo("Thông Báo", "Có lỗi khi cập nhật trình độ LLCT!")
+                self.messageBoxInfo("Thông Báo", "Có lỗi khi cập nhật tôn giáo!")
         
     def delete(self):
-        if self.txtMaTrinhDo.text() == "":
-            self.messageBoxInfo("Thông Báo", "Vui lòng chọn trình độ LLCT cần xóa!")
+        if self.txtMaTonGiao.text() == "":
+            self.messageBoxInfo("Thông Báo", "Vui lòng chọn tôn giáo cần xóa!")
             return
         else:
             try:
-                reply = QMessageBox.question(None, "Xác nhận", "Bạn có muốn xóa trình độ LLCT này không?", QMessageBox.Yes | QMessageBox.No)
+                reply = QMessageBox.question(None, "Xác nhận", "Bạn có muốn xóa tôn giáo này không?", QMessageBox.Yes | QMessageBox.No)
                 # Kiểm tra phản hồi từ hộp thoại
                 if reply == QMessageBox.Yes:
-                    query = f"DELETE FROM `lyluanchinhtri` WHERE `MaTrinhDo`='{self.txtMaTrinhDo.text()}'"
+                    query = f"DELETE FROM `tongiao` WHERE `MaTonGiao`='{self.txtMaTonGiao.text()}'"
                     self.db.queryExecute(query)
-                    self.messageBoxInfo("Thông Báo", "Xóa trình độ LLCT thành công!")
+                    self.messageBoxInfo("Thông Báo", "Xóa tôn giáo thành công!")
                     self.getData()
 
                     self.resetInput()
             except:
-                self.messageBoxInfo("Thông Báo", "Có lỗi khi xóa trình độ LLCT!")
+                self.messageBoxInfo("Thông Báo", "Có lỗi khi xóa tôn giáo!")
 
     def resetInput(self):
-        self.txtMaTrinhDo.setText("")
-        self.txtLLCT.setText("")
+        self.txtMaTonGiao.setText("")
+        self.txtTenTonGiao.setText("")
 
-        self.txtMaTrinhDo.setEnabled(True)
+        self.txtMaTonGiao.setEnabled(True)
         self.buttonThem.setEnabled(True)
 
         self.buttonSua.setDisabled(True)

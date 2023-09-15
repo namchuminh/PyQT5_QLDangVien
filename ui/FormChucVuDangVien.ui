@@ -94,6 +94,9 @@
      <height>461</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:  #f1f1f1;</string>
+   </property>
    <property name="midLineWidth">
     <number>1</number>
    </property>

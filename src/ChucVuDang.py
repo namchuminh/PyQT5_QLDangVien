@@ -41,12 +41,7 @@ class ChucVuDang(QWidget):
 
         # Đặt tên cho các cột
         self.tableData.setHorizontalHeaderLabels(['Mã Chức Vụ Đảng', 'Tên Chức Vụ Đảng'])
-
-        # Thiết lập stylesheet cho header
-        header = self.tableData.horizontalHeader()
-        header.setStyleSheet("border: 1px solid #dedfe0;")
         
-
         # Thêm dữ liệu vào bảng
         for row, rowData in enumerate(data):
             for col, value in enumerate(rowData):
