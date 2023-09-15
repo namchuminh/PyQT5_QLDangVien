@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2023 at 07:36 PM
+-- Generation Time: Sep 15, 2023 at 05:15 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -39,12 +39,8 @@ CREATE TABLE `chibo` (
 --
 
 INSERT INTO `chibo` (`MaChiBo`, `TenChiBo`, `NgayThanhLap`, `TongSo`) VALUES
-('CB01', 'ABC', '2023-09-12', 12),
-('CB02', 'Nam', '0000-00-00', 15),
-('CB03', 'Nam2', '0000-00-00', 5),
-('CB04', 'Nam222', '2023-03-15', 15),
-('CB05', 'AA', '1999-06-15', 26),
-('CB06', 'A', '1998-06-15', 12);
+('CB01', 'Chi bộ 01', '2023-09-15', 12),
+('CB02', 'Chi bộ 02', '2023-09-15', 15);
 
 -- --------------------------------------------------------
 
@@ -57,6 +53,14 @@ CREATE TABLE `chucvuchinhquyen` (
   `ChucVuChinhQuyen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `chucvuchinhquyen`
+--
+
+INSERT INTO `chucvuchinhquyen` (`MaChucVu`, `ChucVuChinhQuyen`) VALUES
+('CTX', 'Chủ tịch xã'),
+('TCAH', 'Trưởng công an huyện');
+
 -- --------------------------------------------------------
 
 --
@@ -67,6 +71,14 @@ CREATE TABLE `chucvudang` (
   `MaChucVu` varchar(255) NOT NULL,
   `ChucVuDang` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chucvudang`
+--
+
+INSERT INTO `chucvudang` (`MaChucVu`, `ChucVuDang`) VALUES
+('PBT', 'Phó bí thư'),
+('TBT', 'Tổng bí thư');
 
 -- --------------------------------------------------------
 
@@ -94,11 +106,16 @@ CREATE TABLE `dangvien` (
   `SoCCCD` varchar(25) NOT NULL,
   `SoDienThoai` varchar(25) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `TrinhDoHocVan` varchar(255) NOT NULL,
   `MaTrinhDoLyLuanChinhTri` varchar(255) NOT NULL,
-  `MaTrinhDoChuyenMon` varchar(255) NOT NULL,
-  `ChuyenNganh` varchar(255) NOT NULL
+  `MaTrinhDoChuyenMon` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dangvien`
+--
+
+INSERT INTO `dangvien` (`MaDangVien`, `SoTheDang`, `MaChiBo`, `HoTen`, `GioiTinh`, `MaDanToc`, `MaTonGiao`, `NgaySinh`, `NoiSinh`, `QueQuan`, `HoKhauThuongTru`, `DiaChiHienTai`, `MaChucVuChinhQuyen`, `MaChucVuDang`, `NgayVaoDang`, `NgayChinhThuc`, `SoCCCD`, `SoDienThoai`, `Email`, `MaTrinhDoLyLuanChinhTri`, `MaTrinhDoChuyenMon`) VALUES
+('ĐV01', '0012020203', 'CB01', 'Đào Ngọc Diễm', 'Nữ', 'KINH', 'DPhat', '1993-08-16', 'Hà Nội', 'Trần Bình, Mai Dịch, Hà Nội', 'Trần Bình, Mai Dịch, Hà Nội', '15A/Ngách 52, Phố Trần Bình, Mai Dịch, Hà Nội', 'CTX', 'PBT', '2023-09-08', '2023-09-09', '001102020205', '0999888999', 'daongocdiem@gmail.com', 'SC', 'TS');
 
 -- --------------------------------------------------------
 
@@ -111,6 +128,15 @@ CREATE TABLE `dantoc` (
   `TenDanToc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `dantoc`
+--
+
+INSERT INTO `dantoc` (`MaDanToc`, `TenDanToc`) VALUES
+('KINH', 'Kinh'),
+('MUONG', 'Mường'),
+('TAY', 'Tày');
+
 -- --------------------------------------------------------
 
 --
@@ -121,6 +147,14 @@ CREATE TABLE `lyluanchinhtri` (
   `MaTrinhDo` varchar(255) NOT NULL,
   `TrinhDoChinhTri` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `lyluanchinhtri`
+--
+
+INSERT INTO `lyluanchinhtri` (`MaTrinhDo`, `TrinhDoChinhTri`) VALUES
+('CC', 'Cao cấp'),
+('SC', 'Sơ cấp');
 
 -- --------------------------------------------------------
 
@@ -157,6 +191,16 @@ CREATE TABLE `tongiao` (
   `TenTonGiao` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `tongiao`
+--
+
+INSERT INTO `tongiao` (`MaTonGiao`, `TenTonGiao`) VALUES
+('DPhat', 'Đạo phật'),
+('HGiao', 'Hồi giáo'),
+('KHONG', 'Không'),
+('TChua', 'Thiên chúa');
+
 -- --------------------------------------------------------
 
 --
@@ -167,6 +211,15 @@ CREATE TABLE `trinhdo` (
   `MaTrinhDo` varchar(255) NOT NULL,
   `ChuyenMon` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `trinhdo`
+--
+
+INSERT INTO `trinhdo` (`MaTrinhDo`, `ChuyenMon`) VALUES
+('KS', 'Kỹ sư'),
+('ThS', 'Thạc sĩ'),
+('TS', 'Tiến sĩ');
 
 --
 -- Indexes for dumped tables
