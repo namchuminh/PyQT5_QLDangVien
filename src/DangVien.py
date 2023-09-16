@@ -2,6 +2,7 @@ from datetime import datetime
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QMessageBox
 from PyQt5.uic import loadUi
 from database.connect import conndb
+from datetime import date
 
 class DangVien(QWidget):
 
@@ -104,22 +105,49 @@ class DangVien(QWidget):
         # Đặt tên cho các cột
         self.tableData.setHorizontalHeaderLabels(['Mã ĐV', 'Số Thẻ', 'Họ Tên', 'Số CCCD', 'Ngày Sinh', 'Giới Tính', 'Dân Tộc', 'Tôn Giáo', 'Quê Quán', 'Thường Trú', 'Nơi Sinh', 'Nơi Ở', 'Ngày Vào Đảng', 'Ngày Chính Thức', 'Số ĐT', 'Email', 'Chi Bộ', 'Chức Vụ Đảng', 'Chức Vụ CQ', 'Trình Độ LLCT', 'Chuyên Môn'])
 
-        # Thêm dữ liệu vào bảng
         for row, rowData in enumerate(data):
             for col, value in enumerate(rowData):
+                if type(value) == date:
+                    value = value.strftime("%d-%m-%Y")
                 item = QTableWidgetItem(str(value))
                 self.tableData.setItem(row, col, item)
     
     def getSelectedRowData(self):
         selected_row = self.tableData.currentRow()
         if selected_row != -1:
-            maChuVu = self.tableData.item(selected_row, 0).text()
-            tenChucVu = self.tableData.item(selected_row, 1).text()
+            self.txtMaDangVien.setText(self.tableData.item(selected_row, 0).text())
+            self.txtSoTheDangVien.setText(self.tableData.item(selected_row, 1).text())
+            self.txtHoTen.setText(self.tableData.item(selected_row, 2).text())
+            self.txtSoCCCD.setText(self.tableData.item(selected_row, 3).text())
+            self.txtNgaySinh.setText(self.tableData.item(selected_row, 4).text())
 
-            self.txtMaTonGiao.setText(maChuVu)
-            self.txtTenTonGiao.setText(tenChucVu)
+            if(self.tableData.item(selected_row, 5).text() == "Nam"):
+                self.radioNam.setChecked(True)
+                self.radioNu.setChecked(False)
+            else:
+                self.radioNam.setChecked(False)
+                self.radioNu.setChecked(True)
+            
+            self.cbDanToc.setCurrentText(self.tableData.item(selected_row, 6).text())
+            self.cbTonGiao.setCurrentText(self.tableData.item(selected_row, 7).text())
 
-            self.txtMaTonGiao.setDisabled(True)
+            self.txtQueQuan.setText(self.tableData.item(selected_row, 8).text())
+            self.txtThuongTru.setText(self.tableData.item(selected_row, 9).text())
+            self.txtNoiSinh.setText(self.tableData.item(selected_row, 10).text())
+            self.txtNoiOHienTai.setText(self.tableData.item(selected_row, 11).text())
+            self.txtNgayVaoDang.setText(self.tableData.item(selected_row, 12).text())
+            self.txtNgayChinhThuc.setText(self.tableData.item(selected_row, 13).text())
+            self.txtSoDienThoai.setText(self.tableData.item(selected_row, 14).text())
+            self.txtEmail.setText(self.tableData.item(selected_row, 15).text())
+
+            self.cbChiBo.setCurrentText(self.tableData.item(selected_row, 16).text())
+            self.cbChucVuDang.setCurrentText(self.tableData.item(selected_row, 17).text())
+            self.cbChucVuChinhQuyen.setCurrentText(self.tableData.item(selected_row, 18).text())
+            self.cbTrinhDoLLCT.setCurrentText(self.tableData.item(selected_row, 19).text())
+            self.cbChuyenMon.setCurrentText(self.tableData.item(selected_row, 20).text())
+
+
+            self.txtMaDangVien.setDisabled(True)
             self.buttonThem.setDisabled(True)
 
             self.buttonSua.setEnabled(True)
