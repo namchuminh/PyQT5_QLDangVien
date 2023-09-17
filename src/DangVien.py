@@ -40,7 +40,8 @@ class DangVien(QWidget):
         try:
             strsql = "SELECT * FROM chibo;"
             result = self.db.queryResult(strsql)
-
+            self.cbTimCB.clear()
+            self.cbChiBo.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbTimCB.addItem(str(item[1]), userData=str(item[0]))
@@ -48,7 +49,8 @@ class DangVien(QWidget):
             
             strsql = "SELECT * FROM chucvudang;"
             result = self.db.queryResult(strsql)
-
+            self.cbChucVuDang.clear()
+            self.cbTimCVD.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbChucVuDang.addItem(str(item[1]), userData=str(item[0]))
@@ -56,7 +58,8 @@ class DangVien(QWidget):
             
             strsql = "SELECT * FROM lyluanchinhtri;"
             result = self.db.queryResult(strsql)
-
+            self.cbTrinhDoLLCT.clear()
+            self.cbTimLLCT.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbTrinhDoLLCT.addItem(str(item[1]), userData=str(item[0]))
@@ -64,32 +67,31 @@ class DangVien(QWidget):
             
             strsql = "SELECT * FROM dantoc;"
             result = self.db.queryResult(strsql)
-
+            self.cbDanToc.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbDanToc.addItem(str(item[1]), userData=str(item[0]))
             
             strsql = "SELECT * FROM tongiao;"
             result = self.db.queryResult(strsql)
-
+            self.cbTonGiao.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbTonGiao.addItem(str(item[1]), userData=str(item[0]))
             
             strsql = "SELECT * FROM chucvuchinhquyen;"
             result = self.db.queryResult(strsql)
-
+            self.cbChucVuChinhQuyen.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbChucVuChinhQuyen.addItem(str(item[1]), userData=str(item[0]))
 
             strsql = "SELECT * FROM trinhdo;"
             result = self.db.queryResult(strsql)
-
+            self.cbChuyenMon.clear()
             if len(result) > 0:
                 for item in result:
                     self.cbChuyenMon.addItem(str(item[1]), userData=str(item[0]))
-            
         except:
             self.messageBoxInfo("Thông Báo", "Có lỗi khi hiển thị thông tin đảng viên!")
 
@@ -220,12 +222,57 @@ class DangVien(QWidget):
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi thêm Đảng viên!")
 
     def update(self):
-        if self.txtMaDangVien.text() == "" or self.txtTenTonGiao.text() == "":
+        if self.txtMaDangVien.text() == "" or self.txtSoTheDangVien.text() == "" or self.txtHoTen.text() == "" or self.txtSoCCCD.text() == "" or self.txtNgaySinh.text() == "" or self.txtQueQuan.text() == "" or self.txtThuongTru.text() == "" or self.txtNoiOHienTai.text() == "" or self.txtNgayVaoDang.text() == "" or self.txtNgayChinhThuc.text() == "" or self.txtSoDienThoai.text() == "" or self.txtEmail.text() == "":
             self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin Đảng viên!")
+            return
+        elif self.txtSoTheDangVien.text().isdigit() == False:
+            self.messageBoxInfo("Thông Báo", "Số thẻ Đảng viên phải nhập là kiểu số!")
+            return
+        elif self.is_valid_date(self.txtNgaySinh.text(),f"%d-%m-%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày sinh Đảng viên định dạng: dd-mm-YYYY!")
+            return
+        elif self.radioNu.isChecked() == False and self.radioNam.isChecked() == False:
+            self.messageBoxInfo("Thông Báo", "Vui lòng chọn giới tính Đảng viên!")
+            return
+        elif self.txtSoCCCD.text().isdigit() == False:
+            self.messageBoxInfo("Thông Báo", "Số điện thoại của Đảng viên phải nhập là kiểu số!")
+            return
+        elif self.txtSoDienThoai.text().isdigit() == False:
+            self.messageBoxInfo("Thông Báo", "Số điện thoại của Đảng viên phải nhập là kiểu số!")
+            return
+        elif self.is_valid_date(self.txtNgayVaoDang.text(),f"%d-%m-%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày vào Đảng định dạng: dd-mm-YYYY!")
+            return
+        elif self.is_valid_date(self.txtNgayChinhThuc.text(),f"%d-%m-%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày chính thức vào Đảng định dạng: dd-mm-YYYY!")
             return
         else:
             try:
-                query = f"UPDATE `tongiao` SET `TenTonGiao`='{self.txtTenTonGiao.text()}' WHERE `MaTonGiao`='{self.txtMaDangVien.text()}'"
+                maTrinhDoLLCT = self.cbTrinhDoLLCT.itemData(self.cbTrinhDoLLCT.currentIndex())
+                danToc = self.cbDanToc.itemData(self.cbDanToc.currentIndex())
+                tonGiao = self.cbTonGiao.itemData(self.cbTonGiao.currentIndex())
+                chiBo = self.cbChiBo.itemData(self.cbChiBo.currentIndex())
+                chucVuDang = self.cbChucVuDang.itemData(self.cbChucVuDang.currentIndex())
+                chucVuChinhQuyen = self.cbChucVuChinhQuyen.itemData(self.cbChucVuChinhQuyen.currentIndex())
+                chuyenMon = self.cbChuyenMon.itemData(self.cbChuyenMon.currentIndex())
+                gioiTinh = "Nam"
+                if self.radioNu.isChecked():
+                    gioiTinh = "Nữ"
+
+                ngaySinh = datetime.strptime(self.txtNgaySinh.text(), "%d-%m-%Y")
+                ngaySinh = ngaySinh.strftime("%Y-%m-%d")
+                
+                ngayVaoDang = datetime.strptime(self.txtNgayVaoDang.text(), "%d-%m-%Y")
+                ngayVaoDang = ngayVaoDang.strftime("%Y-%m-%d")
+
+                ngayChinhThuc = datetime.strptime(self.txtNgayChinhThuc.text(), "%d-%m-%Y")
+                ngayChinhThuc = ngayChinhThuc.strftime("%Y-%m-%d")
+
+                query = f"""
+                    UPDATE `dangvien` SET 
+                    `SoTheDang`='{self.txtSoTheDangVien.text()}',`MaChiBo`='{chiBo}',`HoTen`='{self.txtHoTen.text()}',`GioiTinh`='{gioiTinh}',`MaDanToc`='{danToc}',`MaTonGiao`='{tonGiao}',`NgaySinh`='{ngaySinh}',`NoiSinh`='{self.txtNoiSinh.text()}',`QueQuan`='{self.txtQueQuan.text()}',`HoKhauThuongTru`='{self.txtThuongTru.text()}',`DiaChiHienTai`='{self.txtNoiOHienTai.text()}',`MaChucVuChinhQuyen`='{chucVuChinhQuyen}',`MaChucVuDang`='{chucVuDang}',`NgayVaoDang`='{ngayVaoDang}',`NgayChinhThuc`='{ngayChinhThuc}',`SoCCCD`='{self.txtSoCCCD.text()}',`SoDienThoai`='{self.txtSoDienThoai.text()}',`Email`='{self.txtEmail.text()}',`MaTrinhDoLyLuanChinhTri`='{maTrinhDoLLCT}',`MaTrinhDoChuyenMon`='{chuyenMon}' 
+                    WHERE `MaDangVien`='{self.txtMaDangVien.text()}'
+                """
                 self.db.queryExecute(query)
                 self.messageBoxInfo("Thông Báo", "Cập nhật Đảng viên thành công!")
                 self.getData()
