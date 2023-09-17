@@ -4,7 +4,7 @@ import sys, hashlib
 from database.connect import conndb
 
 
-class Login(QMainWindow):
+class DangNhap(QMainWindow):
     username = ""
     password = ""
     error = ""

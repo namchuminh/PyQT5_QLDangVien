@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QStackedWidget
 from PyQt5.uic import loadUi
-from .Profile import Profile
+from .CaNhan import CaNhan
 from .Wellcome import Wellcome
 from .ChiBo import ChiBo
 from .ChucVuDang import ChucVuDang
@@ -11,7 +11,7 @@ from .DanToc import DanToc
 from .TonGiao import TonGiao
 from .DangVien import DangVien
 
-class Home(QMainWindow):
+class HeThong(QMainWindow):
 
     def __init__(self, user):
         super().__init__()
@@ -34,7 +34,7 @@ class Home(QMainWindow):
     def loadWidget(self):
         sender = self.sender()
         if sender == self.menu_hethong_canhan:
-            self.displayUi(Profile(self.user))
+            self.displayUi(CaNhan(self.user))
         if sender == self.menu_danhmuc_chibo:
             self.displayUi(ChiBo())
         if sender == self.menu_danhmuc_chucvudangvien:

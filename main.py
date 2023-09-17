@@ -1,8 +1,8 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.QtGui import QIcon
-from src.Login import Login
-from src.Home import Home
+from src.DangNhap import DangNhap
+from src.HeThong import HeThong
 from src.DangVien import DangVien
 from database.connect import conndb
 
@@ -13,9 +13,9 @@ class Main(QMainWindow):
 
     def __init__(self):
         super().__init__()
-        self.login = Login()
+        self.login = DangNhap()
         self.login.show()
-        self.home = Home(self.user)
+        self.home = HeThong(self.user)
         self.home.menu_hethong_thoat.triggered.connect(self.handleLogout)
         self.login.loginButton.clicked.connect(self.handleLogin)
 
@@ -38,7 +38,7 @@ class Main(QMainWindow):
 
     def updateUser(self, query):
         self.user = self.db.queryResult(query)
-        self.home = Home(self.user)
+        self.home = HeThong(self.user)
         self.home.menu_hethong_thoat.triggered.connect(self.handleLogout)
 
     def messageBoxInfo(self, title, text):
