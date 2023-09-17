@@ -90,7 +90,7 @@
      <string>Hệ Thống</string>
     </property>
     <addaction name="menu_hethong_canhan"/>
-    <addaction name="actionThay_i_m_t_kh_u"/>
+    <addaction name="menu_hethong_doimatkhau"/>
     <addaction name="menu_hethong_thoat"/>
     <addaction name="separator"/>
    </widget>
@@ -127,7 +127,7 @@
     <string>Cá Nhân</string>
    </property>
   </action>
-  <action name="actionThay_i_m_t_kh_u">
+  <action name="menu_hethong_doimatkhau">
    <property name="text">
     <string>Thay đổi mật khẩu</string>
    </property>

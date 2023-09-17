@@ -10,6 +10,7 @@ from .LyLuanChinhTri import LyLuanChinhTri
 from .DanToc import DanToc
 from .TonGiao import TonGiao
 from .DangVien import DangVien
+from .DoiMatKhau import DoiMatKhau
 
 class HeThong(QMainWindow):
 
@@ -29,6 +30,7 @@ class HeThong(QMainWindow):
         self.menu_chuyenmuc_dantoc.triggered.connect(self.loadWidget)
         self.menu_danhmuc_tongiao.triggered.connect(self.loadWidget)
         self.menu_dangvien.triggered.connect(self.loadWidget)
+        self.menu_hethong_doimatkhau.triggered.connect(self.loadWidget)
 
 
     def loadWidget(self):
@@ -51,6 +53,8 @@ class HeThong(QMainWindow):
             self.displayUi(TonGiao())
         if sender == self.menu_dangvien:
             self.displayUi(DangVien())
+        if sender == self.menu_hethong_doimatkhau:
+            self.displayUi(DoiMatKhau(self.user))
         
     
     def displayUi(self, widget):
