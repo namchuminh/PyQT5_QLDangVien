@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 15, 2023 at 05:15 AM
+-- Generation Time: Sep 18, 2023 at 06:20 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -87,6 +87,7 @@ INSERT INTO `chucvudang` (`MaChucVu`, `ChucVuDang`) VALUES
 --
 
 CREATE TABLE `dangvien` (
+  `id` int(11) NOT NULL,
   `MaDangVien` varchar(255) NOT NULL,
   `SoTheDang` varchar(25) NOT NULL,
   `MaChiBo` varchar(255) NOT NULL,
@@ -114,8 +115,8 @@ CREATE TABLE `dangvien` (
 -- Dumping data for table `dangvien`
 --
 
-INSERT INTO `dangvien` (`MaDangVien`, `SoTheDang`, `MaChiBo`, `HoTen`, `GioiTinh`, `MaDanToc`, `MaTonGiao`, `NgaySinh`, `NoiSinh`, `QueQuan`, `HoKhauThuongTru`, `DiaChiHienTai`, `MaChucVuChinhQuyen`, `MaChucVuDang`, `NgayVaoDang`, `NgayChinhThuc`, `SoCCCD`, `SoDienThoai`, `Email`, `MaTrinhDoLyLuanChinhTri`, `MaTrinhDoChuyenMon`) VALUES
-('ĐV01', '0012020203', 'CB01', 'Đào Ngọc Diễm', 'Nữ', 'KINH', 'DPhat', '1993-08-16', 'Hà Nội', 'Trần Bình, Mai Dịch, Hà Nội', 'Trần Bình, Mai Dịch, Hà Nội', '15A/Ngách 52, Phố Trần Bình, Mai Dịch, Hà Nội', 'CTX', 'PBT', '2023-09-08', '2023-09-09', '001102020205', '0999888999', 'daongocdiem@gmail.com', 'SC', 'TS');
+INSERT INTO `dangvien` (`id`, `MaDangVien`, `SoTheDang`, `MaChiBo`, `HoTen`, `GioiTinh`, `MaDanToc`, `MaTonGiao`, `NgaySinh`, `NoiSinh`, `QueQuan`, `HoKhauThuongTru`, `DiaChiHienTai`, `MaChucVuChinhQuyen`, `MaChucVuDang`, `NgayVaoDang`, `NgayChinhThuc`, `SoCCCD`, `SoDienThoai`, `Email`, `MaTrinhDoLyLuanChinhTri`, `MaTrinhDoChuyenMon`) VALUES
+(1, 'ĐV01', '070220021111', 'CB01', 'Đào Ngọc Diễm', 'Nữ', 'KINH', 'DPhat', '1993-08-16', 'Hà Nội', 'Trần Bình, Mai Dịch, Hà Nội', 'Trần Bình, Mai Dịch, Hà Nội', '15A/Ngách 52, Phố Trần Bình, Mai Dịch, Hà Nội', 'CTX', 'PBT', '2023-09-08', '2023-09-09', '001102020205', '0999888999', 'daongocdiem@gmail.com', 'SC', 'TS');
 
 -- --------------------------------------------------------
 
@@ -247,7 +248,7 @@ ALTER TABLE `chucvudang`
 -- Indexes for table `dangvien`
 --
 ALTER TABLE `dangvien`
-  ADD PRIMARY KEY (`MaDangVien`);
+  ADD PRIMARY KEY (`id`,`MaDangVien`);
 
 --
 -- Indexes for table `dantoc`
@@ -278,6 +279,16 @@ ALTER TABLE `tongiao`
 --
 ALTER TABLE `trinhdo`
   ADD PRIMARY KEY (`MaTrinhDo`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `dangvien`
+--
+ALTER TABLE `dangvien`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
