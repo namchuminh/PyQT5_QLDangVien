@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Quản Lý Thông Tin Đoàn Viên</string>
+   <string>Quản Lý Thông Tin Đảng Viên</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
