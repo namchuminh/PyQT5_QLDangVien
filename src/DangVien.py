@@ -21,11 +21,13 @@ class DangVien(QWidget):
         self.buttonXoa.clicked.connect(self.delete)
         self.buttonTimKiem.clicked.connect(self.search)
         self.buttonNhap.clicked.connect(self.importCSV)
+        self.buttonXuat.clicked.connect(self.exportCSV)
 
         self.buttonSua.setDisabled(True)
         self.buttonXoa.setDisabled(True)
 
         self.getData()
+        self.showComboBox()
 
     def getData(self):
         query = """
@@ -35,7 +37,6 @@ class DangVien(QWidget):
             """
         result = self.db.queryResult(query)
         self.showDataTable(result)
-        self.showComboBox()
 
     def showComboBox(self):
         try:
@@ -113,7 +114,7 @@ class DangVien(QWidget):
         for row, rowData in enumerate(data):
             for col, value in enumerate(rowData):
                 if type(value) == date:
-                    value = value.strftime("%d-%m-%Y")
+                    value = value.strftime("%d/%m/%Y")
                 item = QTableWidgetItem(str(value))
                 self.tableData.setItem(row, col, item)
     
@@ -166,8 +167,8 @@ class DangVien(QWidget):
         elif self.txtSoTheDangVien.text().isdigit() == False:
             self.messageBoxInfo("Thông Báo", "Số thẻ Đảng viên phải nhập là kiểu số!")
             return
-        elif self.is_valid_date(self.txtNgaySinh.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày sinh Đảng viên định dạng: dd-mm-YYYY!")
+        elif self.is_valid_date(self.txtNgaySinh.text(),f"%d/%m/%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày sinh Đảng viên định dạng: dd/mm/YYYY!")
             return
         elif self.radioNu.isChecked() == False and self.radioNam.isChecked() == False:
             self.messageBoxInfo("Thông Báo", "Vui lòng chọn giới tính Đảng viên!")
@@ -178,11 +179,11 @@ class DangVien(QWidget):
         elif self.txtSoDienThoai.text().isdigit() == False:
             self.messageBoxInfo("Thông Báo", "Số điện thoại của Đảng viên phải nhập là kiểu số!")
             return
-        elif self.is_valid_date(self.txtNgayVaoDang.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày vào Đảng định dạng: dd-mm-YYYY!")
+        elif self.is_valid_date(self.txtNgayVaoDang.text(),f"%d/%m/%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày vào Đảng định dạng: dd/mm/YYYY!")
             return
-        elif self.is_valid_date(self.txtNgayChinhThuc.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày chính thức vào Đảng định dạng: dd-mm-YYYY!")
+        elif self.is_valid_date(self.txtNgayChinhThuc.text(),f"%d/%m/%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày chính thức vào Đảng định dạng: dd/mm/YYYY!")
             return
         else:
             try:
@@ -201,14 +202,14 @@ class DangVien(QWidget):
                     if self.radioNu.isChecked():
                         gioiTinh = "Nữ"
 
-                    ngaySinh = datetime.strptime(self.txtNgaySinh.text(), "%d-%m-%Y")
+                    ngaySinh = datetime.strptime(self.txtNgaySinh.text(), "%d/%m/%Y")
                     ngaySinh = ngaySinh.strftime("%Y-%m-%d")
 
                     
-                    ngayVaoDang = datetime.strptime(self.txtNgayVaoDang.text(), "%d-%m-%Y")
+                    ngayVaoDang = datetime.strptime(self.txtNgayVaoDang.text(), "%d/%m/%Y")
                     ngayVaoDang = ngayVaoDang.strftime("%Y-%m-%d")
 
-                    ngayChinhThuc = datetime.strptime(self.txtNgayChinhThuc.text(), "%d-%m-%Y")
+                    ngayChinhThuc = datetime.strptime(self.txtNgayChinhThuc.text(), "%d/%m/%Y")
                     ngayChinhThuc = ngayChinhThuc.strftime("%Y-%m-%d")
 
 
@@ -229,8 +230,8 @@ class DangVien(QWidget):
         elif self.txtSoTheDangVien.text().isdigit() == False:
             self.messageBoxInfo("Thông Báo", "Số thẻ Đảng viên phải nhập là kiểu số!")
             return
-        elif self.is_valid_date(self.txtNgaySinh.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày sinh Đảng viên định dạng: dd-mm-YYYY!")
+        elif self.is_valid_date(self.txtNgaySinh.text(),f"%d/%m/%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày sinh Đảng viên định dạng: dd/mm/YYYY!")
             return
         elif self.radioNu.isChecked() == False and self.radioNam.isChecked() == False:
             self.messageBoxInfo("Thông Báo", "Vui lòng chọn giới tính Đảng viên!")
@@ -241,11 +242,11 @@ class DangVien(QWidget):
         elif self.txtSoDienThoai.text().isdigit() == False:
             self.messageBoxInfo("Thông Báo", "Số điện thoại của Đảng viên phải nhập là kiểu số!")
             return
-        elif self.is_valid_date(self.txtNgayVaoDang.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày vào Đảng định dạng: dd-mm-YYYY!")
+        elif self.is_valid_date(self.txtNgayVaoDang.text(),f"%d/%m/%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày vào Đảng định dạng: dd/mm/YYYY!")
             return
-        elif self.is_valid_date(self.txtNgayChinhThuc.text(),f"%d-%m-%Y") == False:
-            self.messageBoxInfo("Thông Báo", "Ngày chính thức vào Đảng định dạng: dd-mm-YYYY!")
+        elif self.is_valid_date(self.txtNgayChinhThuc.text(),f"%d/%m/%Y") == False:
+            self.messageBoxInfo("Thông Báo", "Ngày chính thức vào Đảng định dạng: dd/mm/YYYY!")
             return
         else:
             try:
@@ -260,13 +261,13 @@ class DangVien(QWidget):
                 if self.radioNu.isChecked():
                     gioiTinh = "Nữ"
 
-                ngaySinh = datetime.strptime(self.txtNgaySinh.text(), "%d-%m-%Y")
+                ngaySinh = datetime.strptime(self.txtNgaySinh.text(), "%d/%m/%Y")
                 ngaySinh = ngaySinh.strftime("%Y-%m-%d")
                 
-                ngayVaoDang = datetime.strptime(self.txtNgayVaoDang.text(), "%d-%m-%Y")
+                ngayVaoDang = datetime.strptime(self.txtNgayVaoDang.text(), "%d/%m/%Y")
                 ngayVaoDang = ngayVaoDang.strftime("%Y-%m-%d")
 
-                ngayChinhThuc = datetime.strptime(self.txtNgayChinhThuc.text(), "%d-%m-%Y")
+                ngayChinhThuc = datetime.strptime(self.txtNgayChinhThuc.text(), "%d/%m/%Y")
                 ngayChinhThuc = ngayChinhThuc.strftime("%Y-%m-%d")
 
                 query = f"""
@@ -365,7 +366,7 @@ class DangVien(QWidget):
                     self.messageBoxInfo("Thông Báo", "Nhập thành công thông tin Đảng viên!")
 
                 except Exception as e:
-                    self.messageBoxInfo("Thông Báo", e)
+                    self.messageBoxInfo("Thông Báo", str(e))
 
             except pd.errors.ParserError:
                 error_message = "File không đúng định dạng .csv"
@@ -447,6 +448,44 @@ class DangVien(QWidget):
         
         return [madantoc, matongiao, machibo, machucvudang, machucvuchinhquyen, matrinhdoLLCT, machuyenmon]
 
+
+    def exportCSV(self):
+        print(113)
+        file_dialog = QFileDialog()
+        file_path, _ = file_dialog.getSaveFileName(None, 'Lưu file CSV', '', 'CSV Files (*.csv)')
+
+        if file_path:
+            try:
+                # Lấy số lượng hàng và cột của Table Widget
+                so_hang = self.tableData.rowCount()
+                so_cot = self.tableData.columnCount()
+
+                # Tạo danh sách header từ dữ liệu trong Table Widget
+                header = []
+                for cot in range(so_cot):
+                    cell_data = self.tableData.horizontalHeaderItem(cot).text()
+                    header.append(cell_data)
+
+                # Tạo danh sách dữ liệu từ Table Widget
+                data = []
+                for hang in range(so_hang):
+                    row_data = []
+                    for cot in range(so_cot):
+                        cell_data = self.tableData.item(hang, cot).text()
+                        row_data.append(cell_data)
+                    data.append(row_data)
+
+                # Tạo DataFrame từ danh sách dữ liệu và header
+                df = pd.DataFrame(data, columns=header)
+
+                # Xuất DataFrame ra file CSV
+                df.to_csv(file_path, index=False, encoding='utf-8-sig')
+
+                self.messageBoxInfo("Thông Báo!", "Xuất thông tin Đảng viên thành công!")
+
+            except Exception as e:
+                self.messageBoxInfo("Thông Báo!", str(e))
+
     def resetInput(self):
         self.buttonLamMoi.setText('LÀM MỚI')
         self.txtMaDangVien.setText("")
@@ -472,6 +511,7 @@ class DangVien(QWidget):
         self.buttonXoa.setDisabled(True)
 
         self.getData()
+        self.showComboBox()
 
 
     def messageBoxInfo(self, title, text):
