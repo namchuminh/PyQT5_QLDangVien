@@ -12,12 +12,9 @@ class DangNhap(QMainWindow):
     def __init__(self):
         super().__init__()
         loadUi("ui/FormDangNhap.ui", self)
-
+        
         # Click loginButton
         self.loginButton.clicked.connect(self.login)
-
-        # Click exitButton
-        self.exitButton.clicked.connect(self.exitApplication)
 
     def login(self):
         self.username = self.txtTaiKhoan.text()
@@ -39,7 +36,6 @@ class DangNhap(QMainWindow):
         except:
             self.error = "Có lỗi khi đăng nhập!"
 
-    def exitApplication(self):
-        sys.exit()
+
         
 

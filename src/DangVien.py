@@ -9,11 +9,11 @@ class DangVien(QWidget):
 
     db = conndb()
 
-    def __init__(self):
+    def __init__(self,user):
         super().__init__()
         loadUi("ui/FormDangVien.ui", self)
         # Để căn chỉnh cột theo chiều ngang
-        # self.tableData.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  
+        self.user = user 
         self.tableData.itemSelectionChanged.connect(self.getSelectedRowData)
         self.buttonLamMoi.clicked.connect(self.resetInput)
         self.buttonThem.clicked.connect(self.add)
@@ -26,8 +26,17 @@ class DangVien(QWidget):
         self.buttonSua.setDisabled(True)
         self.buttonXoa.setDisabled(True)
 
+        self.isGuest()
         self.getData()
         self.showComboBox()
+    
+    def isGuest(self):
+        if self.user == "guest":
+            self.buttonThem.setEnabled(False)
+            self.buttonSua.setEnabled(False)
+            self.buttonXoa.setEnabled(False)
+            self.buttonNhap.setEnabled(False)
+            self.buttonXuat.setEnabled(False)
 
     def getData(self):
         query = """
@@ -159,6 +168,7 @@ class DangVien(QWidget):
             self.buttonSua.setEnabled(True)
             self.buttonXoa.setEnabled(True)
 
+        self.isGuest()
 
     def add(self):
         if self.txtMaDangVien.text() == "" or self.txtSoTheDangVien.text() == "" or self.txtHoTen.text() == "" or self.txtSoCCCD.text() == "" or self.txtNgaySinh.text() == "" or self.txtQueQuan.text() == "" or self.txtThuongTru.text() == "" or self.txtNoiOHienTai.text() == "" or self.txtNgayVaoDang.text() == "" or self.txtNgayChinhThuc.text() == "" or self.txtSoDienThoai.text() == "" or self.txtEmail.text() == "":

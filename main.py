@@ -18,6 +18,7 @@ class Main(QMainWindow):
         self.home = HeThong(self.user)
         self.home.menu_hethong_thoat.triggered.connect(self.handleLogout)
         self.login.loginButton.clicked.connect(self.handleLogin)
+        self.login.guestButton.clicked.connect(self.handleLoginGuest)
 
     def handleLogin(self):
         if self.login.error != "":
@@ -31,15 +32,24 @@ class Main(QMainWindow):
             except:
                 self.messageBoxInfo("Thông Báo", "Có lỗi khi đăng nhập!")
 
+    def handleLoginGuest(self):
+        self.updateUser("guest")
+        self.login.hide()
+        self.home.show()
+
     def handleLogout(self):
-        self.home.displayUi(DangVien())
+        self.home.displayUi(DangVien(self.user))
         self.home.hide()
         self.login.show()
 
     def updateUser(self, query):
-        self.user = self.db.queryResult(query)
-        self.home = HeThong(self.user)
-        self.home.menu_hethong_thoat.triggered.connect(self.handleLogout)
+        if query != "guest":
+            self.user = self.db.queryResult(query)
+            self.home = HeThong(self.user)
+            self.home.menu_hethong_thoat.triggered.connect(self.handleLogout)
+        else:
+            self.home = HeThong("guest")
+            self.home.menu_hethong_thoat.triggered.connect(self.handleLogout)
 
     def messageBoxInfo(self, title, text):
         reply = QMessageBox()

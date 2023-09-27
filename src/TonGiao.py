@@ -7,10 +7,11 @@ class TonGiao(QWidget):
 
     db = conndb()
 
-    def __init__(self):
+    def __init__(self,user):
         super().__init__()
         loadUi("ui/FormTonGiao.ui", self)
         # Để căn chỉnh cột theo chiều ngang
+        self.user = user
         self.tableData.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  
         self.tableData.itemSelectionChanged.connect(self.getSelectedRowData)
         self.buttonLamMoi.clicked.connect(self.resetInput)
@@ -20,8 +21,15 @@ class TonGiao(QWidget):
 
         self.buttonSua.setDisabled(True)
         self.buttonXoa.setDisabled(True)
-
+        self.isGuest()
         self.getData()
+
+    def isGuest(self):
+        if self.user == "guest":
+            self.buttonLamMoi.setEnabled(False)
+            self.buttonThem.setEnabled(False)
+            self.buttonSua.setEnabled(False)
+            self.buttonXoa.setEnabled(False)
 
     def getData(self):
         query = "SELECT * FROM tongiao"
@@ -62,7 +70,8 @@ class TonGiao(QWidget):
 
             self.buttonSua.setEnabled(True)
             self.buttonXoa.setEnabled(True)
-
+        self.isGuest()
+        
     def add(self):
         if self.txtMaTonGiao.text() == "" or self.txtTenTonGiao.text() == "":
             self.messageBoxInfo("Thông Báo", "Vui lòng nhập đủ thông tin tôn giáo!")

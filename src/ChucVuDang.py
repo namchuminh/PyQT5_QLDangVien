@@ -7,10 +7,11 @@ class ChucVuDang(QWidget):
 
     db = conndb()
 
-    def __init__(self):
+    def __init__(self, user):
         super().__init__()
         loadUi("ui/FormChucVuDangVien.ui", self)
         # Để căn chỉnh cột theo chiều ngang
+        self.user = user
         self.tableData.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)  
         self.tableData.itemSelectionChanged.connect(self.getSelectedRowData)
         self.buttonLamMoi.clicked.connect(self.resetInput)
@@ -20,8 +21,15 @@ class ChucVuDang(QWidget):
 
         self.buttonSua.setDisabled(True)
         self.buttonXoa.setDisabled(True)
-
+        self.isGuest()
         self.getData()
+
+    def isGuest(self):
+        if self.user == "guest":
+            self.buttonLamMoi.setEnabled(False)
+            self.buttonThem.setEnabled(False)
+            self.buttonSua.setEnabled(False)
+            self.buttonXoa.setEnabled(False)
 
     def getData(self):
         query = "SELECT * FROM chucvudang"
@@ -62,6 +70,8 @@ class ChucVuDang(QWidget):
 
             self.buttonSua.setEnabled(True)
             self.buttonXoa.setEnabled(True)
+
+        self.isGuest()
 
     def add(self):
         if self.txtMaChucVu.text() == "" or self.txtTenChucVu.text() == "":
