@@ -2,6 +2,7 @@ from datetime import datetime
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QMessageBox
 from PyQt5.uic import loadUi
 from database.connect import conndb
+from datetime import date
 
 class ChiBo(QWidget):
 
@@ -54,6 +55,8 @@ class ChiBo(QWidget):
         # Thêm dữ liệu vào bảng
         for row, rowData in enumerate(data):
             for col, value in enumerate(rowData):
+                if type(value) == date:
+                    value = value.strftime("%d-%m-%Y")
                 item = QTableWidgetItem(str(value))
                 self.tableData.setItem(row, col, item)
     
@@ -67,8 +70,6 @@ class ChiBo(QWidget):
             
             self.txtMaChiBo.setText(maChiBo)
             self.txtTenChiBo.setText(tenChiBo)
-            ngayThanhLap = datetime.strptime(ngayThanhLap, "%Y-%m-%d")
-            ngayThanhLap = ngayThanhLap.strftime("%d-%m-%Y")
             self.txtNgayThanhLap.setText(ngayThanhLap)
             self.txtTongSo.setText(soThanhVien) 
 
