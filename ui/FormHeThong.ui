@@ -112,15 +112,9 @@
     </property>
     <addaction name="menu_dangvien"/>
    </widget>
-   <widget class="QMenu" name="menuB_o_C_o">
-    <property name="title">
-     <string>Báo Cáo</string>
-    </property>
-   </widget>
    <addaction name="menuH_Th_ng"/>
    <addaction name="menuDanh_M_c"/>
    <addaction name="menuNghi_p_V_ng_Vi_n"/>
-   <addaction name="menuB_o_C_o"/>
   </widget>
   <action name="menu_hethong_canhan">
    <property name="text">
